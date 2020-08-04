@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function TextBox({ width, height, x, y, text }) {
+export default function TextBox({ width, height, x, y, text, id }) {
   const textX = Number(x) + Number(width) / 2;
   const textY = Number(y) + Number(height) / 2;
   return (
-    <g id="workingareabox">
+    <g className="TextBox" id={id}>
       <rect
         x={x}
         y={y}
@@ -13,7 +13,7 @@ export default function TextBox({ width, height, x, y, text }) {
         fill="transparent"
         stroke="black"
       />
-      <text x={textX} y={textY} dominant-baseline="middle" text-anchor="middle">
+      <text x={textX} y={textY} dominantBaseline="middle" textAnchor="middle">
         {text}
       </text>
     </g>

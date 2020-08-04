@@ -1,0 +1,73 @@
+$staggerDelay: 0.5s;
+$animationDuration: 0.5s;
+#root {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+svg {
+  grid-column: 1/-1;
+  height: 90vmin;
+  width: auto;
+  background: hotpink;
+  margin: auto;
+}
+
+body[data-state="loaded"] {
+  .TextBox,
+  .AnnotatedArrow,
+  .File {
+    opacity: 0;
+  }
+}
+body[data-state="overview"] svg {
+  .AnnotatedArrow,
+  .File {
+    opacity: 0;
+  }
+  .TextBox {
+    transform: translateY(-100vh);
+  }
+  .TextBox#workingcopy {
+    animation: moveDown $animationDuration forwards ease-out;
+  }
+  .TextBox#stagingarea {
+    animation: moveDown $animationDuration $staggerDelay forwards ease-out;
+  }
+  .TextBox#localrepository {
+    animation: moveDown $animationDuration $staggerDelay * 2 forwards ease-out;
+  }
+  .TextBox#remoterepository {
+    animation: moveDown $animationDuration $staggerDelay * 3 forwards ease-out;
+  }
+}
+body[data-state="addCommand"] svg {
+  .AnnotatedArrow#addCommand {
+    transition: all 1s;
+    opacity: 1;
+  }
+}
+body[data-state="addCommandMoveFile1"] svg {
+  .File#addCommandFile3 {
+    //transform: translate(150px, -70px);
+    animation: moveFileToStagingArea $animationDuration forwards;
+  }
+}
+body[data-state="addCommandMoveFile2"] svg {
+  .File#addCommandFile3 {
+    transform: translate(300px, -20px) scale(0.2);
+  }
+  .File#addCommandFile2 {
+    //transform: translate(150px, -70px);
+    animation: moveFileToStagingArea $animationDuration forwards;
+  }
+}
+@keyframes moveFileToStagingArea {
+  to {
+    transform: translate(300px, -20px) scale(0.2);
+  }
+}
+@keyframes moveDown {
+  to {
+    transform: translateY(0);
+  }
+}
