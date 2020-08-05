@@ -1,5 +1,7 @@
 $staggerDelay: 0.5s;
 $animationDuration: 0.5s;
+$fileScale: 0.4;
+$fileUsedColor: lightgrey;
 #root {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -21,20 +23,18 @@ button {
   stroke-dasharray: 1px;
   stroke-dashoffset: 1px;
 }
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
+#Description {
+  transition: all 1s;
 }
 #pushCommandFile1,
 #pushCommandFile2 {
   opacity: 0;
-  transform: translate(550px, -20px) scale(0.4);
+  transform: translate(550px, -20px) scale($fileScale);
 }
 #pullCommandFile1,
 #pullCommandFile2 {
   opacity: 0;
-  transform: translate(800px, -20px) scale(0.4);
+  transform: translate(800px, -20px) scale($fileScale);
 }
 
 body[data-state="loaded"] {
@@ -107,6 +107,9 @@ body[data-state="addCommandMoveFile1"] svg {
   .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
+  .File#addCommandFileLeftBehind3 path:first-child {
+    fill: $fileUsedColor;
+  }
   .File#addCommandFile3 {
     animation: moveFileToStagingArea $animationDuration forwards;
   }
@@ -118,8 +121,12 @@ body[data-state="addCommandMoveFile2"] svg {
   .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
+  .File#addCommandFileLeftBehind3 path:first-child,
+  .File#addCommandFileLeftBehind2 path:first-child {
+    fill: $fileUsedColor;
+  }
   .File#addCommandFile3 {
-    transform: translate(300px, -20px) scale(0.4);
+    transform: translate(300px, -20px) scale($fileScale);
   }
   .File#addCommandFile2 {
     animation: moveFileToStagingArea $animationDuration forwards;
@@ -132,9 +139,14 @@ body[data-state="addCommandMoveFile3"] svg {
   .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
+  .File#addCommandFileLeftBehind3 path:first-child,
+  .File#addCommandFileLeftBehind2 path:first-child,
+  .File#addCommandFileLeftBehind1 path:first-child {
+    fill: $fileUsedColor;
+  }
   .File#addCommandFile3,
   .File#addCommandFile2 {
-    transform: translate(300px, -20px) scale(0.4);
+    transform: translate(300px, -20px) scale($fileScale);
   }
   .File#addCommandFile1 {
     animation: moveFileToStagingArea $animationDuration forwards;
@@ -146,10 +158,14 @@ body[data-state="addCommandMoveFile3Back"] svg {
   .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
+  .File#addCommandFileLeftBehind3 path:first-child,
+  .File#addCommandFileLeftBehind2 path:first-child {
+    fill: $fileUsedColor;
+  }
   .File#addCommandFile3,
   .File#addCommandFile2,
   .File#addCommandFile1 {
-    transform: translate(300px, -20px) scale(0.4);
+    transform: translate(300px, -20px) scale($fileScale);
   }
   .File#addCommandFile1 {
     animation: moveFileFromStagingArea $animationDuration forwards;
@@ -160,10 +176,15 @@ body[data-state="commitCommand"] svg {
   .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
+  .File#addCommandFileLeftBehind3 path:first-child,
+  .File#addCommandFileLeftBehind2 path:first-child {
+    transition: all 1s 1s;
+    fill: white;
+  }
   .File#addCommandFile3,
   .File#addCommandFile2 {
     transition: all $animationDuration * 3;
-    transform: translate(550px, -20px) scale(0.4);
+    transform: translate(550px, -20px) scale($fileScale);
   }
 }
 body[data-state="pushCommand"] svg {
@@ -223,5 +244,10 @@ body[data-state="pullCommand"] svg {
 @keyframes moveDown {
   to {
     transform: translateY(0);
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
   }
 }

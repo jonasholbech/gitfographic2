@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import StateMachine from "./modules/StateMachine";
 import statechart from "./modules/statechart";
+import descriptions from "./modules/descriptions";
 
 import SVG from "./svg/SVG";
 import Defs from "./svg/Defs";
@@ -8,32 +9,38 @@ import TextBox from "./svg/TextBox";
 import AnnotatedArrow from "./svg/AnnotatedArrow";
 import File from "./svg/File";
 import DrawBox from "./svg/DrawBox";
+import Description from "./svg/Description";
 
 import "./App.scss";
 const machine = new StateMachine(statechart);
 window.machine = machine;
 
 function App() {
+  const [text, setText] = useState(
+    descriptions.states[descriptions.initial].desc
+  );
   return (
     <>
       <button
         onClick={() => {
-          machine.transition("prev");
+          const nextState = machine.transition("prev");
+          setText(descriptions.states[nextState].desc);
         }}
       >
         Previous
       </button>
       <button
         onClick={() => {
-          machine.transition("next");
+          const nextState = machine.transition("next");
+          setText(descriptions.states[nextState].desc);
         }}
       >
         Next
       </button>
       <SVG>
         <Defs />
-        <DrawBox id="localDrawBox" x={5} y={5} width={660} height={280} />
-        <DrawBox id="remoteDrawBox" x={730} y={5} width={180} height={280} />
+        <DrawBox id="localDrawBox" x={0} y={0} width={660} height={100} />
+        <DrawBox id="remoteDrawBox" x={740} y={0} width={170} height={100} />
         <TextBox
           id="workingcopy"
           width={150}
@@ -66,8 +73,11 @@ function App() {
           y={10}
           text="Remote Repository"
         />
+        <File x={100} y={100} id="addCommandFileLeftBehind1" />
         <File x={100} y={100} id="addCommandFile1" />
+        <File x={110} y={115} id="addCommandFileLeftBehind2" />
         <File x={110} y={115} id="addCommandFile2" />
+        <File x={120} y={130} id="addCommandFileLeftBehind3" />
         <File x={120} y={130} id="addCommandFile3" />
 
         <File x={110} y={115} id="pushCommandFile1" />
@@ -121,6 +131,7 @@ function App() {
           offsetY={-10}
           text="pull"
         />
+        <Description x={200} y={100} text={text} />
       </SVG>
     </>
   );

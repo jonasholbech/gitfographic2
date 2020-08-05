@@ -1,6 +1,6 @@
 const statechart = {
   id: "crazy",
-  initial: "loaded",
+  initial: "workingArea",
   states: {
     loaded: {
       on: { next: "overview" },
