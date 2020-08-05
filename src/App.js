@@ -7,6 +7,8 @@ import Defs from "./svg/Defs";
 import TextBox from "./svg/TextBox";
 import AnnotatedArrow from "./svg/AnnotatedArrow";
 import File from "./svg/File";
+import DrawBox from "./svg/DrawBox";
+
 import "./App.scss";
 const machine = new StateMachine(statechart);
 window.machine = machine;
@@ -30,6 +32,8 @@ function App() {
       </button>
       <SVG>
         <Defs />
+        <DrawBox id="localDrawBox" x={5} y={5} width={660} height={280} />
+        <DrawBox id="remoteDrawBox" x={730} y={5} width={180} height={280} />
         <TextBox
           id="workingcopy"
           width={150}
@@ -37,15 +41,6 @@ function App() {
           x={10}
           y={10}
           text="Working Copy"
-        />
-        <AnnotatedArrow
-          id="addCommand"
-          x1={160}
-          y1={45}
-          x2={250}
-          y2={45}
-          offsetY={-10}
-          text="add"
         />
         <TextBox
           id="stagingarea"
@@ -77,9 +72,21 @@ function App() {
 
         <File x={110} y={115} id="pushCommandFile1" />
         <File x={120} y={130} id="pushCommandFile2" />
+
+        <File x={110} y={115} id="pullCommandFile1" />
+        <File x={120} y={130} id="pullCommandFile2" />
+        <AnnotatedArrow
+          id="addCommand"
+          x1={160}
+          y1={45}
+          x2={246}
+          y2={45}
+          offsetY={-10}
+          text="add"
+        />
         <AnnotatedArrow
           id="resetCommand1"
-          x2={160}
+          x2={164}
           y2={65}
           x1={250}
           y1={65}
@@ -91,7 +98,7 @@ function App() {
           id="commitCommand"
           x1={400}
           y1={45}
-          x2={490}
+          x2={496}
           y2={45}
           offsetY={-10}
           text="commit"
@@ -100,16 +107,16 @@ function App() {
           id="pushCommand"
           x1={650}
           y1={45}
-          x2={740}
+          x2={746}
           y2={45}
           offsetY={-10}
           text="push"
         />
         <AnnotatedArrow
           id="pullCommand"
-          x2={650}
+          x2={654}
           y2={65}
-          x1={740}
+          x1={750}
           y1={65}
           offsetY={-10}
           text="pull"

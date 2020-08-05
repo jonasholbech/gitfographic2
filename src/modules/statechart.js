@@ -1,6 +1,6 @@
 const statechart = {
   id: "crazy",
-  initial: "overview",
+  initial: "loaded",
   states: {
     loaded: {
       on: { next: "overview" },
@@ -8,7 +8,25 @@ const statechart = {
     overview: {
       on: {
         prev: "loaded",
+        next: "drawLocalBox",
+      },
+    },
+    drawLocalBox: {
+      on: {
+        next: "drawRemoteBox",
+        prev: "overview",
+      },
+    },
+    drawRemoteBox: {
+      on: {
+        next: "workingArea",
+        prev: "drawLocalBox",
+      },
+    },
+    workingArea: {
+      on: {
         next: "addCommand",
+        prev: "drawRemoteBox",
       },
     },
     addCommand: {
@@ -20,13 +38,13 @@ const statechart = {
     addCommandMoveFile1: {
       on: {
         next: "addCommandMoveFile2",
-        prev: "addCommandMoveFile1",
+        prev: "addCommand",
       },
     },
     addCommandMoveFile2: {
       on: {
         next: "addCommandMoveFile3",
-        prev: "addCommandMoveFile2",
+        prev: "addCommandMoveFile1",
       },
     },
     addCommandMoveFile3: {

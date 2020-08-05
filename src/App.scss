@@ -8,14 +8,35 @@ svg {
   grid-column: 1/-1;
   height: 90vmin;
   width: auto;
-  background: hotpink;
   margin: auto;
+}
+button {
+  height: 100px;
+  margin: 20px;
+  font-size: 2rem;
+}
+.DrawBox {
+  fill: none;
+  stroke: black;
+  stroke-dasharray: 1px;
+  stroke-dashoffset: 1px;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 #pushCommandFile1,
 #pushCommandFile2 {
   opacity: 0;
   transform: translate(550px, -20px) scale(0.4);
 }
+#pullCommandFile1,
+#pullCommandFile2 {
+  opacity: 0;
+  transform: translate(800px, -20px) scale(0.4);
+}
+
 body[data-state="loaded"] {
   .TextBox,
   .AnnotatedArrow,
@@ -44,10 +65,34 @@ body[data-state="overview"] svg {
     animation: moveDown $animationDuration $staggerDelay * 3 forwards ease-out;
   }
 }
+body[data-state="drawLocalBox"] svg {
+  .AnnotatedArrow,
+  .File {
+    opacity: 0;
+  }
+  #localDrawBox {
+    animation: draw 3s forwards;
+  }
+}
+body[data-state="drawRemoteBox"] svg {
+  .AnnotatedArrow,
+  .File {
+    opacity: 0;
+  }
+  #remoteDrawBox {
+    animation: draw 3s forwards;
+  }
+}
+body[data-state="workingArea"] svg {
+  .AnnotatedArrow {
+    opacity: 0;
+  }
+}
 body[data-state="addCommand"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
-  .AnnotatedArrow#pushCommand {
+  .AnnotatedArrow#pushCommand,
+  .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
   .AnnotatedArrow#addCommand {
@@ -58,7 +103,8 @@ body[data-state="addCommand"] svg {
 body[data-state="addCommandMoveFile1"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
-  .AnnotatedArrow#pushCommand {
+  .AnnotatedArrow#pushCommand,
+  .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
   .File#addCommandFile3 {
@@ -68,7 +114,8 @@ body[data-state="addCommandMoveFile1"] svg {
 body[data-state="addCommandMoveFile2"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
-  .AnnotatedArrow#pushCommand {
+  .AnnotatedArrow#pushCommand,
+  .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
   .File#addCommandFile3 {
@@ -81,7 +128,8 @@ body[data-state="addCommandMoveFile2"] svg {
 body[data-state="addCommandMoveFile3"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
-  .AnnotatedArrow#pushCommand {
+  .AnnotatedArrow#pushCommand,
+  .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
   .File#addCommandFile3,
@@ -94,7 +142,8 @@ body[data-state="addCommandMoveFile3"] svg {
 }
 body[data-state="addCommandMoveFile3Back"] svg {
   .AnnotatedArrow#commitCommand,
-  .AnnotatedArrow#pushCommand {
+  .AnnotatedArrow#pushCommand,
+  .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
   .File#addCommandFile3,
@@ -107,7 +156,8 @@ body[data-state="addCommandMoveFile3Back"] svg {
   }
 }
 body[data-state="commitCommand"] svg {
-  .AnnotatedArrow#pushCommand {
+  .AnnotatedArrow#pushCommand,
+  .AnnotatedArrow#pullCommand {
     opacity: 0;
   }
   .File#addCommandFile3,
@@ -117,6 +167,9 @@ body[data-state="commitCommand"] svg {
   }
 }
 body[data-state="pushCommand"] svg {
+  .AnnotatedArrow#pullCommand {
+    opacity: 0;
+  }
   .File#addCommandFile3,
   .File#addCommandFile2 {
     transform: translate(550px, -20px) scale(0.4);
@@ -126,6 +179,32 @@ body[data-state="pushCommand"] svg {
     opacity: 1;
     transition: transform 1s 1s;
     transform: translate(800px, -20px) scale(0.4);
+  }
+}
+body[data-state="pullCommand"] svg {
+  .File#addCommandFile3,
+  .File#addCommandFile2 {
+    transform: translate(550px, -20px) scale(0.4);
+    transition: all 1s;
+  }
+  .File#pushCommandFile1,
+  .File#pushCommandFile2 {
+    opacity: 1;
+    transform: translate(800px, -20px) scale(0.4);
+  }
+  .File#addCommandFile3,
+  .File#addCommandFile2 {
+    transform: translate(550px, -20px) scale(0);
+  }
+  .File#pushCommandFile1,
+  .File#pushCommandFile2 {
+    opacity: 1;
+    transition: all 1s 1s;
+    transform: translate(550px, -20px) scale(0.4);
+  }
+  #pullCommandFile1,
+  #pullCommandFile2 {
+    opacity: 1;
   }
 }
 @keyframes moveFileFromStagingArea {
