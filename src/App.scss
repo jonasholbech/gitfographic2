@@ -11,7 +11,11 @@ svg {
   background: hotpink;
   margin: auto;
 }
-
+#pushCommandFile1,
+#pushCommandFile2 {
+  opacity: 0;
+  transform: translate(550px, -20px) scale(0.4);
+}
 body[data-state="loaded"] {
   .TextBox,
   .AnnotatedArrow,
@@ -41,29 +45,100 @@ body[data-state="overview"] svg {
   }
 }
 body[data-state="addCommand"] svg {
+  .AnnotatedArrow#resetCommand1,
+  .AnnotatedArrow#commitCommand,
+  .AnnotatedArrow#pushCommand {
+    opacity: 0;
+  }
   .AnnotatedArrow#addCommand {
     transition: all 1s;
     opacity: 1;
   }
 }
 body[data-state="addCommandMoveFile1"] svg {
+  .AnnotatedArrow#resetCommand1,
+  .AnnotatedArrow#commitCommand,
+  .AnnotatedArrow#pushCommand {
+    opacity: 0;
+  }
   .File#addCommandFile3 {
-    //transform: translate(150px, -70px);
     animation: moveFileToStagingArea $animationDuration forwards;
   }
 }
 body[data-state="addCommandMoveFile2"] svg {
+  .AnnotatedArrow#resetCommand1,
+  .AnnotatedArrow#commitCommand,
+  .AnnotatedArrow#pushCommand {
+    opacity: 0;
+  }
   .File#addCommandFile3 {
-    transform: translate(300px, -20px) scale(0.2);
+    transform: translate(300px, -20px) scale(0.4);
   }
   .File#addCommandFile2 {
-    //transform: translate(150px, -70px);
     animation: moveFileToStagingArea $animationDuration forwards;
   }
 }
-@keyframes moveFileToStagingArea {
+body[data-state="addCommandMoveFile3"] svg {
+  .AnnotatedArrow#resetCommand1,
+  .AnnotatedArrow#commitCommand,
+  .AnnotatedArrow#pushCommand {
+    opacity: 0;
+  }
+  .File#addCommandFile3,
+  .File#addCommandFile2 {
+    transform: translate(300px, -20px) scale(0.4);
+  }
+  .File#addCommandFile1 {
+    animation: moveFileToStagingArea $animationDuration forwards;
+  }
+}
+body[data-state="addCommandMoveFile3Back"] svg {
+  .AnnotatedArrow#commitCommand,
+  .AnnotatedArrow#pushCommand {
+    opacity: 0;
+  }
+  .File#addCommandFile3,
+  .File#addCommandFile2,
+  .File#addCommandFile1 {
+    transform: translate(300px, -20px) scale(0.4);
+  }
+  .File#addCommandFile1 {
+    animation: moveFileFromStagingArea $animationDuration forwards;
+  }
+}
+body[data-state="commitCommand"] svg {
+  .AnnotatedArrow#pushCommand {
+    opacity: 0;
+  }
+  .File#addCommandFile3,
+  .File#addCommandFile2 {
+    transition: all $animationDuration * 3;
+    transform: translate(550px, -20px) scale(0.4);
+  }
+}
+body[data-state="pushCommand"] svg {
+  .File#addCommandFile3,
+  .File#addCommandFile2 {
+    transform: translate(550px, -20px) scale(0.4);
+  }
+  .File#pushCommandFile1,
+  .File#pushCommandFile2 {
+    opacity: 1;
+    transition: transform 1s 1s;
+    transform: translate(800px, -20px) scale(0.4);
+  }
+}
+@keyframes moveFileFromStagingArea {
   to {
-    transform: translate(300px, -20px) scale(0.2);
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes moveFileToStagingArea {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(300px, -20px) scale(0.4);
   }
 }
 @keyframes moveDown {

@@ -1,6 +1,6 @@
 const statechart = {
   id: "crazy",
-  initial: "addCommand",
+  initial: "overview",
   states: {
     loaded: {
       on: { next: "overview" },
@@ -29,18 +29,34 @@ const statechart = {
         prev: "addCommandMoveFile2",
       },
     },
-    about: {
+    addCommandMoveFile3: {
       on: {
-        home: "home",
-        products: "products",
-        contact: "contact",
+        next: "addCommandMoveFile3Back",
+        prev: "addCommandMoveFile2",
       },
     },
-    contact: {
+    addCommandMoveFile3Back: {
       on: {
-        home: "home",
-        products: "products",
-        about: "about",
+        next: "commitCommand",
+        prev: "addCommandMoveFile3",
+      },
+    },
+    commitCommand: {
+      on: {
+        next: "pushCommand",
+        prev: "addCommandMoveFile3Back",
+      },
+    },
+    pushCommand: {
+      on: {
+        next: "pullCommand",
+        prev: "commitCommand",
+      },
+    },
+    pullCommand: {
+      on: {
+        next: "",
+        prev: "pushCommand",
       },
     },
   },

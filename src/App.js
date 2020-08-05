@@ -47,9 +47,6 @@ function App() {
           offsetY={-10}
           text="add"
         />
-        <File x={100} y={100} id="addCommandFile1" />
-        <File x={110} y={115} id="addCommandFile2" />
-        <File x={120} y={130} id="addCommandFile3" />
         <TextBox
           id="stagingarea"
           width={150}
@@ -73,6 +70,49 @@ function App() {
           x={750}
           y={10}
           text="Remote Repository"
+        />
+        <File x={100} y={100} id="addCommandFile1" />
+        <File x={110} y={115} id="addCommandFile2" />
+        <File x={120} y={130} id="addCommandFile3" />
+
+        <File x={110} y={115} id="pushCommandFile1" />
+        <File x={120} y={130} id="pushCommandFile2" />
+        <AnnotatedArrow
+          id="resetCommand1"
+          x2={160}
+          y2={65}
+          x1={250}
+          y1={65}
+          offsetY={-10}
+          text="reset"
+        />
+
+        <AnnotatedArrow
+          id="commitCommand"
+          x1={400}
+          y1={45}
+          x2={490}
+          y2={45}
+          offsetY={-10}
+          text="commit"
+        />
+        <AnnotatedArrow
+          id="pushCommand"
+          x1={650}
+          y1={45}
+          x2={740}
+          y2={45}
+          offsetY={-10}
+          text="push"
+        />
+        <AnnotatedArrow
+          id="pullCommand"
+          x2={650}
+          y2={65}
+          x1={740}
+          y1={65}
+          offsetY={-10}
+          text="pull"
         />
       </SVG>
     </>
