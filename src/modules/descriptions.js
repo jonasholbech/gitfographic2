@@ -1,5 +1,5 @@
 const descriptions = {
-  initial: "workingArea",
+  initial: "loaded",
   states: {
     loaded: {
       desc: `Everything is loaded
