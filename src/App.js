@@ -10,14 +10,21 @@ import AnnotatedArrow from "./svg/AnnotatedArrow";
 import File from "./svg/File";
 import DrawBox from "./svg/DrawBox";
 import Description from "./svg/Description";
+import TypewriterDescription from "./svg/TypewriterDescription";
 //import DetailedFile from "./svg/DetailedFile";
 import "./App.scss";
 const machine = new StateMachine(statechartOverview);
 function App() {
+  const [typewriter, setTypewriter] = useState(false);
+  const [text, setText] = useState(
+    descriptions.states[descriptions.initial].desc
+  );
+  const [x, setX] = useState(200);
+  const [y, setY] = useState(100);
+
   function switchState(next) {
     const nextState = machine.transition(next);
 
-    setText(descriptions.states?.[nextState]?.desc);
     switch (nextState) {
       case "workingArea":
         setX(300);
@@ -27,19 +34,20 @@ function App() {
         break;
       case "localRepository":
         setX(140);
-        setY(70);
+        setY(30);
         break;
       case "gitIgnoreFile":
+        setTypewriter(true);
+        setX(390);
+        setY(40);
         break;
       default:
+        setTypewriter(false);
         setX(200);
     }
+    setText(descriptions.states?.[nextState]?.desc);
   }
-  const [text, setText] = useState(
-    descriptions.states[descriptions.initial].desc
-  );
-  const [x, setX] = useState(200);
-  const [y, setY] = useState(100);
+
   return (
     <>
       <button
@@ -197,7 +205,17 @@ function App() {
             </text>
           </g>
         </g>
-        <Description x={x} y={y} text={text} />
+        {!typewriter && <Description x={x} y={y} text={text} />}
+        {typewriter && (
+          <TypewriterDescription
+            x={x}
+            y={y}
+            text={text}
+            typewriter={typewriter}
+            startDelay={2000}
+            doneCallback={(e) => setTypewriter(false)}
+          />
+        )}
       </SVG>
     </>
   );

@@ -98,7 +98,6 @@ const statechart = {
       },
     },
     gitIgnoreSceneSet2: {
-      //entry: test,
       on: {
         next: "gitIgnoreFile",
         prev: "gitIgnoreSceneSet",
@@ -106,8 +105,14 @@ const statechart = {
     },
     gitIgnoreFile: {
       on: {
-        next: "",
+        next: "gitIgnoreFileMovedBack",
         prev: "gitIgnoreSceneSet2",
+      },
+    },
+    gitIgnoreFileMovedBack: {
+      on: {
+        next: "",
+        prev: "gitIgnoreFile",
       },
     },
   },

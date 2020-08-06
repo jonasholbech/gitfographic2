@@ -292,13 +292,28 @@ body[data-state="gitIgnoreFile"] svg {
     animation: switchToBigFile 2s forwards;
   }
   #gitignoreFileSmall g g path + * {
-    transition: all 1s 2s;
     opacity: 0;
+  }
+}
+body[data-state="gitIgnoreFileMovedBack"] svg {
+  #sceneOverview {
+    transform: scale(0);
+  }
+  #sceneGitignore {
+    opacity: 1;
+  }
+  #gitignoreFileSmall {
+    transition: all 1s;
+    transform: scale(1) translate(0, 0);
+    //animation: switchToBigFile 1s forwards reverse;
   }
 }
 
 @keyframes switchToBigFile {
-  to {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
     transform: scale(3) translate(100px, -80px);
   }
 }

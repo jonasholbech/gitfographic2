@@ -1,12 +1,6 @@
-import React, { useState } from "react";
-import useInterval from "../hooks/useInterval";
-export default function Description({ x, y, text, typewriter = false }) {
-  let [count, setCount] = useState(0);
+import React from "react";
 
-  useInterval(() => {
-    setCount(count + 1);
-  }, 1000);
-
+export default function Description({ x, y, text }) {
   if (!text) {
     return <g transform={`translate(${x} ${y})`}></g>;
   }
