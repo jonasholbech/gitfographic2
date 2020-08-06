@@ -25,8 +25,14 @@ const statechart = {
     },
     workingArea: {
       on: {
-        next: "addCommand",
+        next: "stagingArea",
         prev: "drawRemoteBox",
+      },
+    },
+    stagingArea: {
+      on: {
+        next: "addCommand",
+        prev: "workingArea",
       },
     },
     addCommand: {

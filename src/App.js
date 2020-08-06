@@ -16,23 +16,35 @@ const machine = new StateMachine(statechart);
 window.machine = machine;
 
 function App() {
+  function switchState(next) {
+    const nextState = machine.transition(next);
+
+    setText(descriptions.states?.[nextState]?.desc);
+    switch (nextState) {
+      case "workingArea":
+        setX(300);
+        break;
+      default:
+        setX(200);
+    }
+  }
   const [text, setText] = useState(
     descriptions.states[descriptions.initial].desc
   );
+  const [x, setX] = useState(200);
+  const [y, setY] = useState(100);
   return (
     <>
       <button
         onClick={() => {
-          const nextState = machine.transition("prev");
-          setText(descriptions.states[nextState].desc);
+          switchState("prev");
         }}
       >
         Previous
       </button>
       <button
         onClick={() => {
-          const nextState = machine.transition("next");
-          setText(descriptions.states[nextState].desc);
+          switchState("next");
         }}
       >
         Next
@@ -41,6 +53,14 @@ function App() {
         <Defs />
         <DrawBox id="localDrawBox" x={0} y={0} width={660} height={100} />
         <DrawBox id="remoteDrawBox" x={740} y={0} width={170} height={100} />
+        <DrawBox id="workingAreaDrawBox" x={0} y={0} width={170} height={300} />
+        <DrawBox
+          id="stagingAreaDrawBox"
+          x={240}
+          y={0}
+          width={170}
+          height={300}
+        />
         <TextBox
           id="workingcopy"
           width={150}
@@ -73,18 +93,18 @@ function App() {
           y={10}
           text="Remote Repository"
         />
-        <File x={100} y={100} id="addCommandFileLeftBehind1" />
-        <File x={100} y={100} id="addCommandFile1" />
-        <File x={110} y={115} id="addCommandFileLeftBehind2" />
-        <File x={110} y={115} id="addCommandFile2" />
-        <File x={120} y={130} id="addCommandFileLeftBehind3" />
-        <File x={120} y={130} id="addCommandFile3" />
+        <File x={20} y={100} id="addCommandFileLeftBehind1" />
+        <File x={20} y={100} id="addCommandFile1" />
+        <File x={30} y={115} id="addCommandFileLeftBehind2" />
+        <File x={30} y={115} id="addCommandFile2" />
+        <File x={40} y={130} id="addCommandFileLeftBehind3" />
+        <File x={40} y={130} id="addCommandFile3" />
 
         <File x={110} y={115} id="pushCommandFile1" />
         <File x={120} y={130} id="pushCommandFile2" />
 
-        <File x={110} y={115} id="pullCommandFile1" />
-        <File x={120} y={130} id="pullCommandFile2" />
+        <File x={90} y={115} id="pullCommandFile1" />
+        <File x={90} y={130} id="pullCommandFile2" />
         <AnnotatedArrow
           id="addCommand"
           x1={160}
@@ -131,7 +151,7 @@ function App() {
           offsetY={-10}
           text="pull"
         />
-        <Description x={200} y={100} text={text} />
+        <Description x={x} y={y} text={text} />
       </SVG>
     </>
   );

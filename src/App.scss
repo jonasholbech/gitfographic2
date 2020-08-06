@@ -87,6 +87,17 @@ body[data-state="workingArea"] svg {
   .AnnotatedArrow {
     opacity: 0;
   }
+  #workingAreaDrawBox {
+    animation: draw 3s forwards;
+  }
+}
+body[data-state="stagingArea"] svg {
+  .AnnotatedArrow {
+    opacity: 0;
+  }
+  #stagingAreaDrawBox {
+    animation: draw 3s forwards;
+  }
 }
 body[data-state="addCommand"] svg {
   .AnnotatedArrow#resetCommand1,

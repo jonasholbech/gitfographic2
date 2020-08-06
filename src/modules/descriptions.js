@@ -20,6 +20,7 @@ const descriptions = {
       desc: `The folder where we have our development files
         is called the "working area"`,
     },
+
     addCommand: {},
     addCommandMoveFile1: {},
     addCommandMoveFile2: {},
