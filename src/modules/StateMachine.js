@@ -11,9 +11,12 @@ export default class StateMachine {
     if (!nextState) {
       throw new Error(`invalid: ${this.state} -> ${transitionName}`);
     }
+
     this.history.push(transitionName);
     document.body.dataset.state = nextState;
+
     this.state = nextState;
+    //this.transitions[this.state].entry();
     return this.state;
   }
 }

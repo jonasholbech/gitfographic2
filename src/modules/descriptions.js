@@ -84,6 +84,9 @@ const descriptions = {
         - or writing the file name in a special file called ".gitignore"
         Let's take a look at this file`,
     },
+    gitIgnoreFile: {
+      desc: `Here's some stuff`,
+    },
   },
 };
 export default descriptions;

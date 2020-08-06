@@ -12,8 +12,7 @@ import DrawBox from "./svg/DrawBox";
 import Description from "./svg/Description";
 //import DetailedFile from "./svg/DetailedFile";
 import "./App.scss";
-let machine = new StateMachine(statechartOverview);
-
+const machine = new StateMachine(statechartOverview);
 function App() {
   function switchState(next) {
     const nextState = machine.transition(next);
@@ -29,6 +28,8 @@ function App() {
       case "localRepository":
         setX(140);
         setY(70);
+        break;
+      case "gitIgnoreFile":
         break;
       default:
         setX(200);

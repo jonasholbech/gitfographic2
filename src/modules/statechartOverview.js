@@ -98,6 +98,7 @@ const statechart = {
       },
     },
     gitIgnoreSceneSet2: {
+      //entry: test,
       on: {
         next: "gitIgnoreFile",
         prev: "gitIgnoreSceneSet",
