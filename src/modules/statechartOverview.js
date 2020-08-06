@@ -1,6 +1,7 @@
+import { initialState } from "./config";
 const statechart = {
-  id: "crazy",
-  initial: "loaded",
+  id: "overview",
+  initial: initialState,
   states: {
     loaded: {
       on: { next: "overview" },
@@ -86,8 +87,26 @@ const statechart = {
     },
     pullCommand: {
       on: {
-        next: "",
+        next: "gitIgnoreSceneSet",
         prev: "pushCommand",
+      },
+    },
+    gitIgnoreSceneSet: {
+      on: {
+        next: "gitIgnoreSceneSet2",
+        prev: "pullCommand",
+      },
+    },
+    gitIgnoreSceneSet2: {
+      on: {
+        next: "gitIgnoreFile",
+        prev: "gitIgnoreSceneSet",
+      },
+    },
+    gitIgnoreFile: {
+      on: {
+        next: "",
+        prev: "gitIgnoreSceneSet2",
       },
     },
   },

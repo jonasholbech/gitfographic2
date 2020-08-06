@@ -8,7 +8,7 @@ $fileUsedColor: lightgrey;
 }
 svg {
   grid-column: 1/-1;
-  height: 90vmin;
+  height: 80vmin;
   width: auto;
   margin: auto;
 }
@@ -25,6 +25,9 @@ button {
 }
 #Description {
   transition: all 1s;
+}
+#sceneGitignore {
+  opacity: 0;
 }
 #pushCommandFile1,
 #pushCommandFile2 {
@@ -254,6 +257,49 @@ body[data-state="pullCommand"] svg {
   #pullCommandFile1,
   #pullCommandFile2 {
     opacity: 1;
+  }
+}
+body[data-state="gitIgnoreSceneSet"] svg {
+  #sceneOverview {
+    transition: all 1s;
+    transform-origin: 50% 50%;
+    transform: scale(0);
+  }
+  #gitignoreFileSmall {
+    opacity: 0;
+  }
+  #sceneGitignore {
+    opacity: 1;
+  }
+}
+body[data-state="gitIgnoreSceneSet2"] svg {
+  #sceneOverview {
+    transform: scale(0);
+  }
+  #sceneGitignore {
+    opacity: 1;
+  }
+}
+body[data-state="gitIgnoreFile"] svg {
+  #sceneOverview {
+    transform: scale(0);
+  }
+  #sceneGitignore {
+    opacity: 1;
+  }
+  #gitignoreFileSmall {
+    transform-origin: 0 0;
+    animation: switchToBigFile 2s forwards;
+  }
+  #gitignoreFileSmall g g path + * {
+    transition: all 1s 2s;
+    opacity: 0;
+  }
+}
+
+@keyframes switchToBigFile {
+  to {
+    transform: scale(3) translate(100px, -80px);
   }
 }
 @keyframes moveFileFromStagingArea {

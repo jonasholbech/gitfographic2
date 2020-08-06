@@ -1,5 +1,6 @@
+import { initialState } from "./config";
 const descriptions = {
-  initial: "loaded",
+  initial: initialState,
   states: {
     loaded: {
       desc: `Everything is loaded
@@ -67,6 +68,21 @@ const descriptions = {
       desc: `To get back your code (when you've messed up)
         or when a team mate has pushed something you need,
         issue a "pull" command`,
+    },
+    gitIgnoreSceneSet: {
+      desc: `Let's explore our working copy a bit more
+      It's is the files as they are on our computer.
+      
+      All files you add to the folder is waiting to be either 
+      - tracked
+      - excluded from tracking`,
+    },
+    gitIgnoreSceneSet2: {
+      desc: `Tracking was done by "adding" the file. Thereby telling git to keep track of it.
+        Excluding a file is done by
+        - not adding it (which is error prone, I have added files by accident countless times)
+        - or writing the file name in a special file called ".gitignore"
+        Let's take a look at this file`,
     },
   },
 };
