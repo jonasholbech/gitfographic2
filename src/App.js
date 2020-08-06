@@ -24,6 +24,13 @@ function App() {
       case "workingArea":
         setX(300);
         break;
+      case "stagingArea":
+        setX(450);
+        break;
+      case "localRepository":
+        setX(140);
+        setY(70);
+        break;
       default:
         setX(200);
     }
@@ -54,9 +61,24 @@ function App() {
         <DrawBox id="localDrawBox" x={0} y={0} width={660} height={100} />
         <DrawBox id="remoteDrawBox" x={740} y={0} width={170} height={100} />
         <DrawBox id="workingAreaDrawBox" x={0} y={0} width={170} height={300} />
+
         <DrawBox
           id="stagingAreaDrawBox"
           x={240}
+          y={0}
+          width={170}
+          height={300}
+        />
+        <DrawBox
+          id="localRepositoryDrawBox"
+          x={490}
+          y={0}
+          width={170}
+          height={300}
+        />
+        <DrawBox
+          id="remoteRepositoryDrawBox"
+          x={740}
           y={0}
           width={170}
           height={300}

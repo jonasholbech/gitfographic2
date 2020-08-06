@@ -99,6 +99,22 @@ body[data-state="stagingArea"] svg {
     animation: draw 3s forwards;
   }
 }
+body[data-state="localRepository"] svg {
+  .AnnotatedArrow {
+    opacity: 0;
+  }
+  #localRepositoryDrawBox {
+    animation: draw 3s forwards;
+  }
+}
+body[data-state="remoteRepository"] svg {
+  .AnnotatedArrow {
+    opacity: 0;
+  }
+  #remoteRepositoryDrawBox {
+    animation: draw 3s forwards;
+  }
+}
 body[data-state="addCommand"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
@@ -125,6 +141,7 @@ body[data-state="addCommandMoveFile1"] svg {
     animation: moveFileToStagingArea $animationDuration forwards;
   }
 }
+/*
 body[data-state="addCommandMoveFile2"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
@@ -142,8 +159,8 @@ body[data-state="addCommandMoveFile2"] svg {
   .File#addCommandFile2 {
     animation: moveFileToStagingArea $animationDuration forwards;
   }
-}
-body[data-state="addCommandMoveFile3"] svg {
+}*/
+body[data-state="addCommandMoveFile2and3"] svg {
   .AnnotatedArrow#resetCommand1,
   .AnnotatedArrow#commitCommand,
   .AnnotatedArrow#pushCommand,
@@ -155,11 +172,11 @@ body[data-state="addCommandMoveFile3"] svg {
   .File#addCommandFileLeftBehind1 path:first-child {
     fill: $fileUsedColor;
   }
-  .File#addCommandFile3,
-  .File#addCommandFile2 {
+  .File#addCommandFile3 {
     transform: translate(300px, -20px) scale($fileScale);
   }
-  .File#addCommandFile1 {
+  .File#addCommandFile1,
+  .File#addCommandFile2 {
     animation: moveFileToStagingArea $animationDuration forwards;
   }
 }

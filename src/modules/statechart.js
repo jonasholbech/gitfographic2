@@ -31,8 +31,20 @@ const statechart = {
     },
     stagingArea: {
       on: {
-        next: "addCommand",
+        next: "localRepository",
         prev: "workingArea",
+      },
+    },
+    localRepository: {
+      on: {
+        next: "remoteRepository",
+        prev: "stagingArea",
+      },
+    },
+    remoteRepository: {
+      on: {
+        next: "addCommand",
+        prev: "localRepository",
       },
     },
     addCommand: {
@@ -43,20 +55,15 @@ const statechart = {
     },
     addCommandMoveFile1: {
       on: {
-        next: "addCommandMoveFile2",
+        next: "addCommandMoveFile2and3",
         prev: "addCommand",
       },
     },
-    addCommandMoveFile2: {
-      on: {
-        next: "addCommandMoveFile3",
-        prev: "addCommandMoveFile1",
-      },
-    },
-    addCommandMoveFile3: {
+
+    addCommandMoveFile2and3: {
       on: {
         next: "addCommandMoveFile3Back",
-        prev: "addCommandMoveFile2",
+        prev: "addCommandMoveFile1",
       },
     },
     addCommandMoveFile3Back: {

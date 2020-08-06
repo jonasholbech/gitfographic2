@@ -10,7 +10,7 @@ export default function Description({ x, y, text }) {
         {text.split("\n").map((t, i) => {
           return (
             <tspan key={i} x={0} dy="1.2em">
-              {t}
+              {t.trim()}
             </tspan>
           );
         })}
