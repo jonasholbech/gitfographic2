@@ -1,1 +1,1 @@
-export const initialState = "beforeCommits";
+export const initialState = "loaded";
