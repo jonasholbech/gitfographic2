@@ -11,6 +11,7 @@ import File from "./svg/File";
 import DrawBox from "./svg/DrawBox";
 import Description from "./svg/Description";
 import TypewriterDescription from "./svg/TypewriterDescription";
+import CommitList from "./svg/CommitList";
 //import DetailedFile from "./svg/DetailedFile";
 import "./App.scss";
 const machine = new StateMachine(statechartOverview);
@@ -21,6 +22,7 @@ function App() {
   );
   const [x, setX] = useState(200);
   const [y, setY] = useState(100);
+  const [commitListStep, setCommitListStep] = useState(-1);
 
   function switchState(next) {
     const nextState = machine.transition(next);
@@ -40,6 +42,16 @@ function App() {
         setTypewriter(true);
         setX(390);
         setY(40);
+        break;
+      case "commits1":
+      case "commits2":
+      case "commits3":
+      case "commits4":
+      case "commits5":
+        setCommitListStep((count) => count + 1);
+        break;
+      case "commits6":
+        setCommitListStep((count) => count - 2);
         break;
       default:
         setTypewriter(false);
@@ -204,6 +216,9 @@ function App() {
               .gitignore
             </text>
           </g>
+        </g>
+        <g id="sceneCommitsExplained">
+          <CommitList x="100" y="100" step={commitListStep} />
         </g>
         {!typewriter && <Description x={x} y={y} text={text} />}
         {typewriter && (

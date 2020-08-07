@@ -12,6 +12,24 @@ svg {
   width: auto;
   margin: auto;
 }
+circle {
+  fill: white;
+  stroke: black;
+  transform: scale(0);
+}
+line {
+  stroke: black;
+  stroke-dasharray: 100px;
+  stroke-dashoffset: 100px;
+}
+.stroke0 {
+  transition: all 1s;
+  stroke-dashoffset: 0;
+}
+.drawCircle {
+  transition: all 1s;
+  transform: scale(1);
+}
 button {
   height: 100px;
   margin: 20px;
@@ -26,7 +44,8 @@ button {
 #Description {
   transition: all 1s;
 }
-#sceneGitignore {
+#sceneGitignore,
+#sceneCommitsExplained {
   opacity: 0;
 }
 #pushCommandFile1,
@@ -308,7 +327,26 @@ body[data-state="gitIgnoreFileMovedBack"] svg {
     //animation: switchToBigFile 1s forwards reverse;
   }
 }
-
+body[data-state="beforeCommits"] svg {
+  #sceneOverview,
+  #sceneGitignore,
+  #CommitList {
+    opacity: 0;
+  }
+  #sceneCommitsExplained {
+    opacity: 1;
+  }
+}
+body[data-state^="commits"] svg {
+  //NOTE: ^
+  #sceneOverview,
+  #sceneGitignore {
+    opacity: 0;
+  }
+  #sceneCommitsExplained {
+    opacity: 1;
+  }
+}
 @keyframes switchToBigFile {
   0% {
     transform: scale(1) translate(0, 0);

@@ -117,8 +117,56 @@ const statechart = {
     },
     gitIgnoreFileMovedBack: {
       on: {
-        next: "",
+        next: "beforeCommits",
         prev: "gitIgnoreFile",
+      },
+    },
+    beforeCommits: {
+      on: {
+        next: "commits1",
+        prev: "gitIgnoreFileMovedBack",
+      },
+    },
+    commits1: {
+      on: {
+        next: "commits2",
+        prev: "beforeCommits",
+      },
+    },
+    commits2: {
+      on: {
+        next: "commits3",
+        prev: "commits1",
+      },
+    },
+    commits3: {
+      on: {
+        next: "commits4",
+        prev: "commits2",
+      },
+    },
+    commits4: {
+      on: {
+        next: "commits5",
+        prev: "commits3",
+      },
+    },
+    commits5: {
+      on: {
+        next: "commits6",
+        prev: "commits4",
+      },
+    },
+    commits6: {
+      on: {
+        next: "commits7",
+        prev: "commits5",
+      },
+    },
+    commits7: {
+      on: {
+        next: "commitsDeeper1",
+        prev: "commits6",
       },
     },
   },
