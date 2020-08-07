@@ -67,7 +67,7 @@ function App() {
           switchState("prev");
         }}
       >
-        Previous
+        Previous (breaks)
       </button>
       <button
         onClick={() => {
