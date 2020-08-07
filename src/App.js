@@ -34,7 +34,7 @@ function App() {
         break;
       case "localRepository":
         setX(140);
-        setY(30);
+        setY(130);
         break;
       case "gitIgnoreFile":
         setTypewriter(true);

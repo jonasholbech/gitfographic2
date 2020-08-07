@@ -10,7 +10,7 @@ export default function TypewriterDescription({
   let [count, setCount] = useState(0);
   let [currentText, setCurrentText] = useState("");
   let [delayCompleted, setDelayCompleted] = useState(false);
-  let delay = 50;
+  let delay = 15;
   useEffect(() => {
     setTimeout(() => {
       setDelayCompleted(true);
@@ -37,7 +37,7 @@ export default function TypewriterDescription({
         {currentText.split("\n").map((t, i) => {
           return (
             <tspan key={i} x={0} dy="1.2em">
-              {t.trim()}
+              {t}
             </tspan>
           );
         })}

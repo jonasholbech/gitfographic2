@@ -92,7 +92,11 @@ const descriptions = {
       *.psd
       wireframes/
       node_modules/
-      myWeekendPlans.*`,
+      myWeekendPlans.*
+      
+      #once written here, they
+      #can no longer be added 
+      #to staging`,
     },
     gitIgnoreFileMovedBack: {
       desc: `In general, add files to .gitignore that are

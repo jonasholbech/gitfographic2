@@ -4,7 +4,13 @@ const statechart = {
   initial: initialState,
   states: {
     loaded: {
-      on: { next: "overview" },
+      on: { next: "whatIsGit" },
+    },
+    whatIsGit: {
+      on: {
+        next: "overview",
+        prev: "loaded",
+      },
     },
     overview: {
       on: {
